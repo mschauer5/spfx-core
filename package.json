@@ -1,0 +1,60 @@
+{
+  "name": "@mschauer/spfx-core",
+  "version": "1.0.0",
+  "description": "SPFX Core Package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf lib && tsc && rollup -c rollup.config.js",
+    "start": "rollup -c -w",
+    "build-lib": "rollup -c",
+    "build-publish": "npm run build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mschauer5/spfx-core.git"
+  },
+  "author": "Matt Schauer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mschauer5/spfx-core/issues"
+  },
+  "homepage": "https://github.com/mschauer5/spfx-core#readme",
+  "dependencies": {
+    "tslib": "2.3.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "@microsoft/sp-http": "^1.15.0",
+    "@pnp/graph": "^3.4.1",
+    "@pnp/sp": "^3.4.1",
+    "office-ui-fabric-react": "7.185.7",
+    "@microsoft/sp-core-library": "1.15.0",
+    "@microsoft/sp-property-pane": "1.15.0",
+    "@microsoft/sp-webpart-base": "1.15.0",
+    "@microsoft/sp-lodash-subset": "1.15.0",
+    "@microsoft/sp-office-ui-fabric-core": "1.15.0"
+  },
+  "devDependencies": {
+    "@microsoft/rush-stack-compiler-4.5": "0.2.2",
+    "@rushstack/eslint-config": "2.5.1",
+    "@microsoft/eslint-plugin-spfx": "1.15.0",
+    "@microsoft/eslint-config-spfx": "1.15.0",
+    "@microsoft/sp-build-web": "1.15.0",
+    "@types/webpack-env": "~1.15.2",
+    "ajv": "^6.12.5",
+    "gulp": "4.0.2",
+    "@types/react": "16.9.51",
+    "@types/react-dom": "16.9.8",
+    "eslint-plugin-react-hooks": "4.3.0",
+    "@microsoft/sp-module-interfaces": "1.15.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "rollup": "^2.60.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.1",
+    "rollup-plugin-sass": "^1.2.9",
+    "rollup-plugin-scss": "^3.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.31.0"
+  }
+}
