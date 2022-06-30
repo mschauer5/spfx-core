@@ -6,6 +6,13 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@microsoft/spfx/no-async-await': 'off'
+    '@microsoft/spfx/no-async-await': 'off',
+    '@typescript-eslint/typedef': 'off',
+    'react/no-unescaped-entities': 'off',
+    'react/jsx-no-bind': 'off',
+    'no-empty': 'off',
+    '@typescript-eslint/naming-convention': 'off',
+    'react-hooks/exhaustive-deps': 'off',
+    '@microsoft/spfx/pair-react-dom-render-unmount': 'off'
   }
 };

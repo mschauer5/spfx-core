@@ -16,4 +16,5 @@ const web = (spfi: SPFI) => {
   return { getFileByServerRelativePath: (relativePath: string) => _getFileByServerRelativePath(relativePath, spfi) };
 };
 
+/** @internal */
 export default web;

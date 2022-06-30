@@ -142,4 +142,5 @@ const items = (listTitle: string, spfi: SPFI, fields?: string[], expands?: strin
   };
 };
 
+/** @internal */
 export default items;

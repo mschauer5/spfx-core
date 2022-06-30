@@ -1,6 +1,6 @@
 {
   "name": "@mschauer/spfx-core",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "SPFX Core Package",
   "main": "index.js",
   "scripts": {
@@ -21,18 +21,20 @@
   },
   "homepage": "https://github.com/mschauer5/spfx-core#readme",
   "dependencies": {
-    "tslib": "2.3.1",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "@fluentui/react": "^8.77.3",
+    "@microsoft/sp-application-base": "^1.15.0",
+    "@microsoft/sp-core-library": "1.15.0",
     "@microsoft/sp-http": "^1.15.0",
+    "@microsoft/sp-lodash-subset": "1.15.0",
+    "@microsoft/sp-office-ui-fabric-core": "1.15.0",
+    "@microsoft/sp-property-pane": "1.15.0",
+    "@microsoft/sp-webpart-base": "1.15.0",
     "@pnp/graph": "^3.4.1",
     "@pnp/sp": "^3.4.1",
     "office-ui-fabric-react": "7.185.7",
-    "@microsoft/sp-core-library": "1.15.0",
-    "@microsoft/sp-property-pane": "1.15.0",
-    "@microsoft/sp-webpart-base": "1.15.0",
-    "@microsoft/sp-lodash-subset": "1.15.0",
-    "@microsoft/sp-office-ui-fabric-core": "1.15.0"
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "tslib": "2.3.1"
   },
   "devDependencies": {
     "@microsoft/rush-stack-compiler-4.5": "0.2.2",
