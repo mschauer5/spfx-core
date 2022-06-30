@@ -1,6 +1,6 @@
-import pnp from './pnp';
-import { EnvironmentType } from '../enums/environmentType.enum';
-import { getElementByClassFirst, getElementById } from './element';
+import pnp from '../pnp';
+import { EnvironmentType } from '../../enums/environmentType.enum';
+import { getElementByClassFirst, getElementById } from '../element';
 
 let domain_Url = '';
 let web_Url = '';

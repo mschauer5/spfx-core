@@ -1,7 +1,8 @@
-import list from './list';
+import list from '../list';
+import web from '../web';
 import { SPFI } from '@pnp/sp';
-import web from './web';
 
+/** @internal */
 const sp = (spfi: SPFI) => {
   return { list: (title: string) => list(title, spfi), web: () => web(spfi) };
 };
