@@ -1,16 +1,19 @@
 import pnp from '../pnp';
 import { EnvironmentType } from '../../enums/environmentType.enum';
 import { getElementByClassFirst, getElementById } from '../element';
+import { SPUser } from '@microsoft/sp-page-context';
 
 let domain_Url = '';
 let web_Url = '';
 let web_Relative_Url = '';
 let release_Version = '';
 let env_type = EnvironmentType.Other;
+let user: SPUser;
 
 /** @internal */
 export const global_init = async (releaseVersion: string, fillWidth: boolean = false) => {
   const context = pnp.getContext();
+  user = pnp.getContext().pageContext.user;
   web_Url = context.pageContext.web.absoluteUrl;
   web_Relative_Url = context.pageContext.web.serverRelativeUrl;
   domain_Url = web_Url.replace(web_Relative_Url, '');
@@ -35,3 +38,4 @@ export const Web_Url = web_Url;
 export const Web_Relative_Url = web_Relative_Url;
 export const Release_Version = release_Version;
 export const Env_Type = env_type;
+export const User = user;

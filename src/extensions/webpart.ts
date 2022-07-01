@@ -11,7 +11,7 @@ let _customTheme;
 let _lookupTheme;
 
 export default class MyBaseWebpart<T> extends BaseClientSideWebPart<T> {
-  private _isDarkTheme: boolean = false;
+  public isDarkTheme: boolean = false;
 
   public async wb_onInit(themeVariant: any, lookupTheme: boolean, version: string, fillWidth = false): Promise<void> {
     pnp.setup(this.context);
@@ -48,7 +48,7 @@ export default class MyBaseWebpart<T> extends BaseClientSideWebPart<T> {
       return;
     }
 
-    this._isDarkTheme = !!currentTheme.isInverted;
+    this.isDarkTheme = !!currentTheme.isInverted;
     const { semanticColors } = currentTheme;
     this.domElement.style.setProperty('--bodyText', semanticColors.bodyText);
     this.domElement.style.setProperty('--link', semanticColors.link);
