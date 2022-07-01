@@ -12,11 +12,11 @@ let _customTheme;
 export default abstract class WebPart<T> extends BaseClientSideWebPart<T> {
   public isDarkTheme: boolean = false;
 
-  protected getCustomTheme(): Promise<any> {
+  protected async getCustomTheme(): Promise<any> {
     return Promise.resolve(undefined);
   }
 
-  protected getVersion(): Promise<string> {
+  protected async getVersion(): Promise<string> {
     return Promise.resolve('0.0.0');
   }
 

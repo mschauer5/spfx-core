@@ -26,9 +26,16 @@ export default abstract class RAC<T> extends BaseApplicationCustomizer<T> {
   }
 
   protected getCssLoaders?(): string[];
+
   protected abstract getDomElement(): JSX.Element | any;
-  protected async getCustomTheme?(): Promise<any>;
-  protected async getVersion?(): Promise<string>;
+
+  protected async getCustomTheme(): Promise<any> {
+    return Promise.resolve(undefined);
+  }
+
+  protected async getVersion(): Promise<string> {
+    return Promise.resolve('0.0.0');
+  }
 
   private renderPlaceHolders = (): void => {
     // Handling the top placeholder
