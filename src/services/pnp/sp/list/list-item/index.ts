@@ -41,38 +41,6 @@ const items = (listTitle: string, spfi: SPFI, fields?: string[], expands?: strin
     return item;
   };
 
-  const getAll = async <T>(listTitle: string, spfi: SPFI, fields?: string[], expands?: string[]): Promise<T[]> => {
-    let items: any;
-
-    if (fields && expands) {
-      items = await spfi.web.lists
-        .getByTitle(listTitle)
-        .items.select(...fields)
-        .expand(...expands)();
-    } else if (fields) {
-      items = await spfi.web.lists.getByTitle(listTitle).items.select(...fields)();
-    } else if (expands) {
-      items = await spfi.web.lists.getByTitle(listTitle).items.expand(...expands)();
-    } else {
-      items = await spfi.web.lists.getByTitle(listTitle).items();
-    }
-
-    if (items && fields) {
-      const itemSelectFields: any = [];
-      items.forEach((item: any) => {
-        const itemSelectField: any = {};
-        fields.forEach((fld: string) => {
-          itemSelectField[fld] = item[fld];
-        });
-        itemSelectFields.push(itemSelectField);
-      });
-
-      items = itemSelectFields;
-    }
-
-    return items;
-  };
-
   const getAllWithFilter = async <T>(listTitle: string, spfi: SPFI, filter: string, fields?: string[], expands?: string[]): Promise<T[]> => {
     let items: any;
 
@@ -94,6 +62,42 @@ const items = (listTitle: string, spfi: SPFI, fields?: string[], expands?: strin
         .filter(filter)();
     } else {
       items = await spfi.web.lists.getByTitle(listTitle).items.filter(filter)();
+    }
+
+    if (items && fields) {
+      const itemSelectFields: any = [];
+      items.forEach((item: any) => {
+        const itemSelectField: any = {};
+        fields.forEach((fld: string) => {
+          itemSelectField[fld] = item[fld];
+        });
+        itemSelectFields.push(itemSelectField);
+      });
+
+      items = itemSelectFields;
+    }
+
+    return items;
+  };
+
+  const getAll = async <T>(listTitle: string, spfi: SPFI, filter: string, fields?: string[], expands?: string[]): Promise<T[]> => {
+    if (filter) {
+      return await getAllWithFilter(listTitle, spfi, filter, fields, expands);
+    }
+
+    let items: any;
+
+    if (fields && expands) {
+      items = await spfi.web.lists
+        .getByTitle(listTitle)
+        .items.select(...fields)
+        .expand(...expands)();
+    } else if (fields) {
+      items = await spfi.web.lists.getByTitle(listTitle).items.select(...fields)();
+    } else if (expands) {
+      items = await spfi.web.lists.getByTitle(listTitle).items.expand(...expands)();
+    } else {
+      items = await spfi.web.lists.getByTitle(listTitle).items();
     }
 
     if (items && fields) {
@@ -134,8 +138,7 @@ const items = (listTitle: string, spfi: SPFI, fields?: string[], expands?: strin
   };
 
   return {
-    getAll: async <T>() => await getAll<T>(listTitle, spfi, fields, expands),
-    getAllWithFilter: async <T>(filter: string) => await getAllWithFilter<T>(listTitle, spfi, filter, fields, expands),
+    getAll: async <T>(filter?: string) => await getAll<T>(listTitle, spfi, filter, fields, expands),
     getById: async <T>(id: number) => await getById<T>(listTitle, id, spfi, fields, expands),
     deleteById: async (id: number) => await deleteById(listTitle, id, spfi),
     add: async (payload: any) => await add(listTitle, spfi, payload),

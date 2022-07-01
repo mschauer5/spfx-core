@@ -1,4 +1,4 @@
-import listItems from '../list-item';
+import listItems from './list-item';
 import { SPFI } from '@pnp/sp';
 
 /** @internal */

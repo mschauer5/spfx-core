@@ -74,7 +74,7 @@ const setTheme = (atheme: any) => {
 
 const loadCustomTheme = async () => {
   try {
-    const items = await pnp.sp().list('AppSettings').items(['Title', 'Value']).getAllWithFilter<any>("Title eq 'THEME'");
+    const items = await pnp.sp().list('AppSettings').items(['Title', 'Value']).getAll<any>("Title eq 'THEME'");
     if (items.length > 0) {
       const props = JSON.parse(items[0].Value);
       return props;

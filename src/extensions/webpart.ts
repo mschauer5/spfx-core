@@ -1,10 +1,8 @@
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import * as ReactDom from 'react-dom';
 import pnp from '../services/pnp';
-import { getElementById, getElementByClassFirst } from '../services/element';
 import { global_init } from '../services/global';
 
-// import { webpart_init } from '../../common/lib/services/webpart.service';
 import { theme_init } from '../services/theme';
 import { ThemeProvider, ThemeChangedEventArgs, IReadonlyTheme } from '@microsoft/sp-component-base';
 
@@ -18,6 +16,7 @@ export default class MyBaseWebpart<T> extends BaseClientSideWebPart<T> {
   public async wb_onInit(themeVariant: any, lookupTheme: boolean, version: string, fillWidth = false): Promise<void> {
     pnp.setup(this.context);
     _lookupTheme = lookupTheme;
+
     // Consume the new ThemeProvider service
     const _themeProvider: ThemeProvider = this.context.serviceScope.consume(ThemeProvider.serviceKey);
 

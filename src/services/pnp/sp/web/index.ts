@@ -1,6 +1,9 @@
 import { SPFI } from '@pnp/sp';
+
 import '@pnp/sp/webs';
+
 import '@pnp/sp/files';
+
 import '@pnp/sp/folders';
 
 /** @internal */

@@ -1,5 +1,5 @@
-import list from '../list';
-import web from '../web';
+import list from './list';
+import web from './web';
 import { SPFI } from '@pnp/sp';
 
 /** @internal */

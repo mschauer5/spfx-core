@@ -8,6 +8,7 @@ let web_Relative_Url = '';
 let release_Version = '';
 let env_type = EnvironmentType.Other;
 
+/** @internal */
 export const global_init = async (releaseVersion: string, fillWidth: boolean = false) => {
   const context = pnp.getContext();
   web_Url = context.pageContext.web.absoluteUrl;

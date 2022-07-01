@@ -6,7 +6,7 @@ import '@pnp/sp/lists';
 import '@pnp/sp/items';
 import '@pnp/sp/batching';
 
-import sp from '../sp';
+import sp from './sp';
 import { WebPartContext } from '@microsoft/sp-webpart-base';
 import { ApplicationCustomizerContext } from '@microsoft/sp-application-base';
 
