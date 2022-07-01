@@ -9,12 +9,16 @@ import { ThemeProvider, ThemeChangedEventArgs, IReadonlyTheme } from '@microsoft
 let _themeVariant;
 let _customTheme;
 
-export default abstract class MyBaseWebpart<T> extends BaseClientSideWebPart<T> {
+export default abstract class WebPart<T> extends BaseClientSideWebPart<T> {
   public isDarkTheme: boolean = false;
 
-  protected async getCustomTheme?(): Promise<any>;
+  protected getCustomTheme(): Promise<any> {
+    return Promise.resolve(undefined);
+  }
 
-  protected async getVersion?(): Promise<string>;
+  protected getVersion(): Promise<string> {
+    return Promise.resolve('0.0.0');
+  }
 
   protected async onInit(): Promise<void> {
     _customTheme = await this.getCustomTheme();
