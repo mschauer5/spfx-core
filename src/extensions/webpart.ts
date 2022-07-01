@@ -8,27 +8,32 @@ import { ThemeProvider, ThemeChangedEventArgs, IReadonlyTheme } from '@microsoft
 
 let _themeVariant;
 let _customTheme;
-let _lookupTheme;
 
-export default class MyBaseWebpart<T> extends BaseClientSideWebPart<T> {
+export default abstract class MyBaseWebpart<T> extends BaseClientSideWebPart<T> {
   public isDarkTheme: boolean = false;
 
-  public async wb_onInit(themeVariant: any, lookupTheme: boolean, version: string, fillWidth = false): Promise<void> {
+  protected async getCustomTheme?(): Promise<any>;
+
+  protected async getVersion?(): Promise<string>;
+
+  protected async onInit(): Promise<void> {
+    _customTheme = await this.getCustomTheme();
+    const version = await this.getVersion();
+
     pnp.setup(this.context);
-    _lookupTheme = lookupTheme;
 
     // Consume the new ThemeProvider service
     const _themeProvider: ThemeProvider = this.context.serviceScope.consume(ThemeProvider.serviceKey);
 
-    // If it exists, get the theme variant
-    _themeVariant = _themeProvider.tryGetTheme();
+    // // If it exists, get the theme variant
+    // _themeVariant = _themeProvider.tryGetTheme();
 
     // Register a handler to be notified if the theme variant changes
     _themeProvider.themeChangedEvent.add(this, this.handleThemeChangedEvent);
 
-    global_init(version, fillWidth);
+    global_init(version);
 
-    await theme_init(themeVariant, lookupTheme);
+    await theme_init(_customTheme);
 
     return super.onInit();
   }
@@ -39,7 +44,7 @@ export default class MyBaseWebpart<T> extends BaseClientSideWebPart<T> {
 
   private async handleThemeChangedEvent(args: ThemeChangedEventArgs): Promise<void> {
     _themeVariant = { ...args.theme, _customTheme };
-    await theme_init(_themeVariant, _lookupTheme);
+    await theme_init(_themeVariant);
     this.render();
   }
 

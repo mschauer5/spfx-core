@@ -72,21 +72,9 @@ const setTheme = (atheme: any) => {
   return _theme;
 };
 
-const loadCustomTheme = async () => {
-  try {
-    const items = await pnp.sp().list('AppSettings').items(['Title', 'Value']).getAll<any>("Title eq 'THEME'");
-    if (items.length > 0) {
-      const props = JSON.parse(items[0].Value);
-      return props;
-    }
-  } catch (error) {}
-  return undefined;
-};
-
-export const theme_init = async (themeVariant: any = undefined, lookupTheme: boolean = false) => {
-  const atheme = lookupTheme ? await loadCustomTheme() : undefined;
-
-  const appTheme = atheme ? atheme : getDefault();
+/** @internal */
+export const theme_init = async (themeVariant: any = undefined) => {
+  const appTheme = getDefault();
 
   setTheme({
     palette: { ...appTheme },

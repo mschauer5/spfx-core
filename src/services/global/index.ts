@@ -11,7 +11,7 @@ let env_type = EnvironmentType.Other;
 let user: SPUser;
 
 /** @internal */
-export const global_init = async (releaseVersion: string, fillWidth: boolean = false) => {
+export const global_init = async (releaseVersion: string) => {
   const context = pnp.getContext();
   user = pnp.getContext().pageContext.user;
   web_Url = context.pageContext.web.absoluteUrl;
@@ -23,13 +23,11 @@ export const global_init = async (releaseVersion: string, fillWidth: boolean = f
   if (window.location.href.indexOf('/_layouts/15/workbench.aspx') > -1 || window.location.href.indexOf('loadSPFX=true&customActions=') > -1) {
     env_type = EnvironmentType.Local;
     web_Url = window.location.href.substring(0, window.location.href.indexOf('#'));
-    if (fillWidth) {
-      const workbenchPageContent = await getElementById('workbenchPageContent');
-      workbenchPageContent.style.maxWidth = '100%';
+    const workbenchPageContent = await getElementById('workbenchPageContent');
+    workbenchPageContent.style.maxWidth = '100%';
 
-      const canvasZone = await getElementByClassFirst('CanvasZone');
-      canvasZone.style.maxWidth = '100%';
-    }
+    const canvasZone = await getElementByClassFirst('CanvasZone');
+    canvasZone.style.maxWidth = '100%';
   }
 };
 
