@@ -17,9 +17,9 @@ export default abstract class RAC<T> extends BaseApplicationCustomizer<T> {
 
   public constructor() {
     super();
-    const cssLoaders = this.getCssLoaders();
-    if (cssLoaders) {
-      cssLoaders.forEach((css) => {
+
+    if (this.getCssLoaders) {
+      this.getCssLoaders().forEach((css) => {
         SPComponentLoader.loadCss(css);
       });
     }
@@ -27,7 +27,9 @@ export default abstract class RAC<T> extends BaseApplicationCustomizer<T> {
 
   protected getCssLoaders?(): string[];
 
-  protected abstract getDomElement(): JSX.Element | any;
+  protected abstract getDomElement(): any;
+
+  protected getDomElementProps?(): any;
 
   protected async getCustomTheme(): Promise<any> {
     return Promise.resolve(undefined);
@@ -47,7 +49,9 @@ export default abstract class RAC<T> extends BaseApplicationCustomizer<T> {
         return;
       }
 
-      const element: React.ReactElement = React.createElement(this.getDomElement(), {});
+      const props = this.getDomElementProps ? this.getDomElementProps() : {};
+
+      const element: React.ReactElement = React.createElement(this.getDomElement(), props);
 
       ReactDOM.render(element, this.topPlaceholder.domElement);
     }
