@@ -1,6 +1,5 @@
 import { createTheme, FontSizes, FontWeights } from '@fluentui/theme';
 import IIThemeBase, { IIFontStyles, IIFontWeights } from '../../models/IITheme-base.model';
-import pnp from '../pnp';
 
 let _theme: any;
 

@@ -12,17 +12,21 @@ let _customTheme;
 export default abstract class WebPart<T> extends BaseClientSideWebPart<T> {
   public isDarkTheme: boolean = false;
 
-  protected async getCustomTheme(): Promise<any> {
+  protected async setCustomTheme(): Promise<any> {
     return Promise.resolve(undefined);
   }
 
-  protected async getVersion(): Promise<string> {
+  protected async onAfterInit(): Promise<void> {
+    return Promise.resolve();
+  }
+
+  protected async setVersion(): Promise<string> {
     return Promise.resolve('0.0.0');
   }
 
   protected async onInit(): Promise<void> {
-    _customTheme = await this.getCustomTheme();
-    const version = await this.getVersion();
+    _customTheme = await this.setCustomTheme();
+    const version = await this.setVersion();
 
     pnp.setup(this.context);
 
@@ -39,7 +43,10 @@ export default abstract class WebPart<T> extends BaseClientSideWebPart<T> {
 
     await theme_init(_customTheme);
 
-    return super.onInit();
+    await super.onInit();
+
+    await this.onAfterInit();
+    return Promise.resolve();
   }
 
   protected onDispose(): void {
@@ -64,5 +71,5 @@ export default abstract class WebPart<T> extends BaseClientSideWebPart<T> {
     this.domElement.style.setProperty('--linkHovered', semanticColors.linkHovered);
   }
 
-  public render(): void {}
+  // public render(): void {}
 }

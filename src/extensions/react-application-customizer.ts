@@ -27,15 +27,19 @@ export default abstract class RAC<T> extends BaseApplicationCustomizer<T> {
 
   protected getCssLoaders?(): string[];
 
-  protected abstract getDomElement(): any;
+  protected abstract getDomElement(): React.ComponentType;
 
   protected getDomElementProps?(): any;
 
-  protected async getCustomTheme(): Promise<any> {
+  protected async setCustomTheme(): Promise<any> {
     return Promise.resolve(undefined);
   }
 
-  protected async getVersion(): Promise<string> {
+  protected async onAfterInit(): Promise<void> {
+    return Promise.resolve();
+  }
+
+  protected async setVersion(): Promise<string> {
     return Promise.resolve('0.0.0');
   }
 
@@ -71,8 +75,8 @@ export default abstract class RAC<T> extends BaseApplicationCustomizer<T> {
   }
 
   public async onInit(): Promise<void> {
-    _customTheme = await this.getCustomTheme();
-    const version = await this.getVersion();
+    _customTheme = await this.setCustomTheme();
+    const version = await this.setVersion();
 
     pnp.setup(this.context);
 
@@ -91,6 +95,9 @@ export default abstract class RAC<T> extends BaseApplicationCustomizer<T> {
 
     this.context.placeholderProvider.changedEvent.add(this, this.renderPlaceHolders);
 
-    return super.onInit();
+    await super.onInit();
+
+    await this.onAfterInit();
+    return Promise.resolve();
   }
 }
