@@ -21,7 +21,7 @@ export default abstract class WebPart<T> extends BaseClientSideWebPart<T> {
   }
 
   protected async setVersion(): Promise<string> {
-    return Promise.resolve('0.0.0');
+    return Promise.resolve('1.0.0');
   }
 
   protected async onInit(): Promise<void> {
