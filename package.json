@@ -1,6 +1,6 @@
 {
   "name": "@mschauer/spfx-core",
-  "version": "2.0.16",
+  "version": "2.0.17",
   "description": "SPFX Core Package",
   "main": "index.js",
   "scripts": {
@@ -39,6 +39,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "tslib": "2.3.1",
+    "urijs": "^1.19.11",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -53,6 +54,7 @@
     "@types/react-dom": "16.9.8",
     "@types/react-router": "^5.1.17",
     "@types/react-router-dom": "^5.3.2",
+    "@types/urijs": "^1.19.19",
     "@types/uuid": "^8.3.4",
     "@types/webpack-env": "~1.15.2",
     "ajv": "^6.12.5",

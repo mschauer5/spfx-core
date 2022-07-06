@@ -1,10 +1,9 @@
 import pnp from '../pnp';
 import { EnvironmentType } from '../../enums/environmentType.enum';
 import { getElementByClassFirst, getElementById } from '../element';
-import { SPUser } from '@microsoft/sp-page-context';
 import { v4 as uuidv4 } from 'uuid';
 
-let gVariable: any = {};
+const gVariable: any = {};
 
 /** @internal */
 export const global_init = async (releaseVersion: string) => {
@@ -34,6 +33,10 @@ export const global_init = async (releaseVersion: string) => {
   }
 };
 
+export const setSPAUrl = (url) => {
+  gVariable.spa_url = url;
+};
+
 export const setHistory = (useHistory: any) => {
   history = useHistory;
 };
@@ -48,5 +51,6 @@ export const global = {
   Env_Type: () => gVariable.env_type,
   User: () => gVariable.user,
   History: () => gVariable.history,
-  Session_Id: () => gVariable.session_id
+  Session_Id: () => gVariable.session_id,
+  SPA_Url: () => gVariable.spa_url
 };
