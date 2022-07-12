@@ -75,10 +75,10 @@ export default abstract class RAC<T> extends BaseApplicationCustomizer<T> {
   }
 
   public async onInit(): Promise<void> {
-    _customTheme = await this.setCustomTheme();
     const version = await this.setVersion();
-
     pnp.setup(this.context);
+
+    _customTheme = await this.setCustomTheme();
 
     // Consume the new ThemeProvider service
     const _themeProvider: ThemeProvider = this.context.serviceScope.consume(ThemeProvider.serviceKey);

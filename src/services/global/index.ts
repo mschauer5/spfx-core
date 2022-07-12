@@ -2,6 +2,7 @@ import pnp from '../pnp';
 import { EnvironmentType } from '../../enums/environmentType.enum';
 import { getElementByClassFirst, getElementById } from '../element';
 import { v4 as uuidv4 } from 'uuid';
+import { SPUser } from '@microsoft/sp-page-context';
 
 const gVariable: any = {};
 
@@ -43,14 +44,14 @@ export const setHistory = (useHistory: any) => {
 
 export const global = {
   setHistory,
-  Web_Id: () => gVariable.web_Id,
-  Domain_Url: () => gVariable.domain_Url,
-  Web_Url: () => gVariable.web_Url,
-  Web_Relative_Url: () => gVariable.web_Relative_Url,
-  Release_Version: () => gVariable.release_Version,
-  Env_Type: () => gVariable.env_type,
-  User: () => gVariable.user,
+  Web_Id: () => gVariable.web_Id as string,
+  Domain_Url: () => gVariable.domain_Url as string,
+  Web_Url: () => gVariable.web_Url as string,
+  Web_Relative_Url: () => gVariable.web_Relative_Url as string,
+  Release_Version: () => gVariable.release_Version as string,
+  Env_Type: () => gVariable.env_type as EnvironmentType,
+  User: () => gVariable.user as SPUser,
   History: () => gVariable.history,
-  Session_Id: () => gVariable.session_id,
-  SPA_Url: () => gVariable.spa_url
+  Session_Id: () => gVariable.session_id as string,
+  SPA_Url: () => gVariable.spa_url as string
 };
