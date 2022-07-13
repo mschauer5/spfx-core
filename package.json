@@ -1,6 +1,6 @@
 {
   "name": "@mschauer/spfx-core",
-  "version": "2.0.19",
+  "version": "2.0.20",
   "description": "SPFX Core Package",
   "main": "index.js",
   "scripts": {
